@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Master</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Tahoma,sans-serif;
+}
+
+body{
+  background:#eef3f8;
+  color:#1e293b;
+}
+
+header{
+  background:linear-gradient(135deg,#1e3a8a,#3b82f6);
+  color:white;
+  text-align:center;
+  padding:35px 20px;
+}
+
+header h1{
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+header p{
+  font-size:17px;
+}
+
+nav{
+  background:#172033;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  padding:12px;
+  flex-wrap:wrap;
+}
+
+nav button{
+  background:transparent;
+  color:white;
+  border:0;
+  padding:12px 18px;
+  cursor:pointer;
+  font-size:16px;
+}
+
+nav button:hover{
+  background:#2563eb;
+  border-radius:10px;
+}
+
+.container{
+  max-width:900px;
+  margin:25px auto;
+  padding:0 15px;
+}
+
+.card{
+  background:white;
+  border-radius:18px;
+  padding:25px;
+  margin-bottom:20px;
+  box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.hero{
+  text-align:center;
+}
+
+.hero h2{
+  color:#1e3a8a;
+  margin-bottom:10px;
+}
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.feature{
+  text-align:center;
+  padding:20px;
+  border-radius:15px;
+  background:#f8fafc;
+}
+
+.feature .icon{
+  font-size:35px;
+  margin-bottom:10px;
+}
+
+button{
+  border:0;
+  border-radius:10px;
+  padding:12px 18px;
+  cursor:pointer;
+  font-size:16px;
+}
+
+.primary{
+  background:#2563eb;
+  color:white;
+}
+
+.primary:hover{
+  background:#1d4ed8;
+}
+
+.option{
+  width:100%;
+  text-align:right;
+  background:#f1f5f9;
+  margin-top:10px;
+  border:2px solid transparent;
+}
+
+.option:hover{
+  background:#dbeafe;
+}
+
+.option.selected{
+  border-color:#2563eb;
+  background:#dbeafe;
+}
+
+.correct{
+  background:#dcfce7 !important;
+  border-color:#16a34a !important;
+}
+
+.wrong{
+  background:#fee2e2 !important;
+  border-color:#dc2626 !important;
+}
+
+.progress{
+  background:#e2e8f0;
+  height:10px;
+  border-radius:20px;
+  overflow:hidden;
+  margin:15px 0;
+}
+
+.progress-bar{
+  background:#2563eb;
+  height:100%;
+  width:0%;
+  transition:.3s;
+}
+
+.score{
+  text-align:center;
+  font-size:42px;
+  font-weight:bold;
+  color:#2563eb;
+}
+
+.result{
+  text-align:center;
+}
+
+.hidden{
+  display:none;
+}
+
+footer{
+  text-align:center;
+  background:#172033;
+  color:white;
+  padding:25px;
+  margin-top:30px;
+}
+
+@media(max-width:650px){
+  .features{
+    grid-template-columns:1fr;
+  }
+
+  header h1{
+    font-size:27px;
+  }
+
+  .card{
+    padding:18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎓 English Master</h1>
+  <p>منصة تفاعلية لتعلم اللغة الإنجليزية واختبار مستواك</p>
+</header>
+
+<nav>
+  <button onclick="showHome()">🏠 الرئيسية</button>
+  <button onclick="showLessons()">📚 الدروس</button>
+  <button onclick="startQuiz()">📝 الاختبار</button>
+</nav>
+
+<div class="container">
+
+<!-- الرئيسية -->
+<section id="home">
+
+  <div class="card hero">
+    <h2>مرحبًا بك في English Master 👋</h2>
+    <p>
+      تعلم كلمات وقواعد اللغة الإنجليزية بطريقة بسيطة،
+      ثم اختبر نفسك واحصل على نتيجتك.
+    </p>
+
+    <br>
+
+    <button class="primary" onclick="startQuiz()">
+      ابدأ الاختبار 🚀
+    </button>
+  </div>
+
+  <div class="features">
+
+    <div class="feature">
+      <div class="icon">📚</div>
+      <h3>الدروس</h3>
+      <p>تعلم أساسيات اللغة الإنجليزية.</p>
+    </div>
+
+    <div class="feature">
+      <div class="icon">📝</div>
+      <h3>الاختبارات</h3>
+      <p>اختبر معلوماتك في اللغة.</p>
+    </div>
+
+    <div class="feature">
+      <div class="icon">🏆</div>
+      <h3>النتيجة</h3>
+      <p>اعرف مستواك بعد الاختبار.</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- الدروس -->
+<section id="lessons" class="hidden">
+
+  <div class="card">
+
+    <h2>📚 درس 1: الكلمات الأساسية</h2>
+
+    <br>
+
+    <p><b>Hello</b> = مرحبًا</p>
+    <p><b>Good morning</b> = صباح الخير</p>
+    <p><b>Thank you</b> = شكرًا لك</p>
+    <p><b>Book</b> = كتاب</p>
+    <p><b>School</b> = مدرسة</p>
+    <p><b>Teacher</b> = معلم</p>
+
+  </div>
+
+  <div class="card">
+
+    <h2>📖 درس 2: قواعد بسيطة</h2>
+
+    <br>
+
+    <p>
+      نستخدم <b>am</b> مع I
+    </p>
+
+    <p>
+      مثال: <b>I am a student.</b>
+    </p>
+
+    <br>
+
+    <p>
+      نستخدم <b>is</b> مع He / She / It
+    </p>
+
+    <p>
+      مثال: <b>She is a teacher.</b>
+    </p>
+
+    <br>
+
+    <p>
+      نستخدم <b>are</b> مع You / We / They
+    </p>
+
+    <p>
+      مثال: <b>They are students.</b>
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- الاختبار -->
+<section id="quiz" class="hidden">
+
+  <div class="card">
+
+    <h2>📝 اختبار English Master</h2>
+
+    <p id="questionNumber"></p>
+
+    <div class="progress">
+      <div id="progressBar" class="progress-bar"></div>
+    </div>
+
+    <h3 id="question"></h3>
+
+    <div id="options"></div>
+
+    <br>
+
+    <p id="feedback"></p>
+
+    <button id="nextButton" class="primary" onclick="nextQuestion()">
+      السؤال التالي
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- النتيجة -->
+<section id="result" class="hidden">
+
+  <div class="card result">
+
+    <h2>🎉 انتهى الاختبار!</h2>
+
+    <br>
+
+    <div id="finalScore" class="score">
+      0 / 5
+    </div>
+
+    <br>
+
+    <p id="level"></p>
+
+    <br>
+
+    <button class="primary" onclick="startQuiz()">
+      🔄 إعادة الاختبار
+    </button>
+
+    <button onclick="showHome()">
+      🏠 الرئيسية
+    </button>
+
+  </div>
+
+</section>
+
+</div>
+
+<footer>
+  <p>© 2026 English Master</p>
+  <p>منصة تعليمية تفاعلية 🇪🇬</p>
+</footer>
+
+
+<script>
+
+const questions = [
+
+{
+ question:"What is the opposite of Big?",
+ options:["Small","Fast","Tall","Long"],
+ answer:0
+},
+
+{
+ question:"She ___ a student.",
+ options:["am","is","are","be"],
+ answer:1
+},
+
+{
+ question:"What does Book mean?",
+ options:["قلم","كتاب","مدرسة","كرسي"],
+ answer:1
+},
+
+{
+ question:"I ___ football every day.",
+ options:["play","plays","playing","played"],
+ answer:0
+},
+
+{
+ question:"What is the plural of Child?",
+ options:["Childs","Childes","Children","Childrens"],
+ answer:2
+}
+
+];
+
+
+let currentQuestion = 0;
+let score = 0;
+let selectedAnswer = null;
+let answered = false;
+
+
+function hideAll(){
+
+  document.getElementById("home").classList.add("hidden");
+
+  document.getElementById("lessons").classList.add("hidden");
+
+  document.getElementById("quiz").classList.add("hidden");
+
+  document.getElementById("result").classList.add("hidden");
+
+}
+
+
+function showHome(){
+
+  hideAll();
+
+  document.getElementById("home").classList.remove("hidden");
+
+}
+
+
+function showLessons(){
+
+  hideAll();
+
+  document.getElementById("lessons").classList.remove("hidden");
+
+}
+
+
+function startQuiz(){
+
+  currentQuestion = 0;
+
+  score = 0;
+
+  selectedAnswer = null;
+
+  answered = false;
+
+  hideAll();
+
+  document.getElementById("quiz").classList.remove("hidden");
+
+  document.getElementById("nextButton").disabled = false;
+
+  loadQuestion();
+
+}
+
+
+function loadQuestion(){
+
+  const q = questions[currentQuestion];
+
+  selectedAnswer = null;
+
+  answered = false;
+
+  document.getElementById("questionNumber").textContent =
+    "السؤال " + (currentQuestion + 1) +
+    " من " + questions.length;
+
+  document.getElementById("question").textContent =
+    q.question;
+
+  document.getElementById("feedback").textContent = "";
+
+  const percentage =
+    ((currentQuestion) / questions.length) * 100;
+
+  document.getElementById("progressBar").style.width =
+    percentage + "%";
+
+  const optionsContainer =
+    document.getElementById("options");
+
+  optionsContainer.innerHTML = "";
+
+  q.options.forEach(function(option,index){
+
+    const button = document.createElement("button");
+
+    button.className = "option";
+
+    button.textContent = option;
+
+    button.onclick = function(){
+
+      if(answered){
+        return;
+      }
+
+      selectedAnswer = index;
+
+      document
+      .querySelectorAll(".option")
+      .forEach(function(btn){
+        btn.classList.remove("selected");
+      });
+
+      button.classList.add("selected");
+
+    };
+
+    optionsContainer.appendChild(button);
+
+  });
+
+  document.getElementById("nextButton").textContent =
+    "السؤال التالي";
+
+}
+
+
+function nextQuestion(){
+
+  if(selectedAnswer === null){
+
+    document.getElementById("feedback").textContent =
+      "⚠️ اختاري إجابة أولًا.";
+
+    return;
+
+  }
+
+
+  if(!answered){
+
+    answered = true;
+
+    const correct =
+      questions[currentQuestion].answer;
+
+    const buttons =
+      document.querySelectorAll(".option");
+
+    buttons[correct].classList.add("correct");
+
+    if(selectedAnswer === correct){
+
+      score++;
+
+      document.getElementById("feedback").textContent =
+        "✅ إجابة صحيحة! أحسنتِ.";
+
+    }else{
+
+      buttons[selectedAnswer].classList.add("wrong");
+
+      document.getElementById("feedback").textContent =
+        "❌ إجابة غير صحيحة.";
+
+    }
+
+    document.getElementById("nextButton").textContent =
+      currentQuestion === questions.length - 1
+      ? "عرض النتيجة"
+      : "التالي";
+
+    return;
+
+  }
+
+
+  if(currentQuestion < questions.length - 1){
+
+    currentQuestion++;
+
+    loadQuestion();
+
+  }else{
+
+    showResult();
+
+  }
+
+}
+
+
+function showResult(){
+
+  hideAll();
+
+  document.getElementById("result").classList.remove("hidden");
+
+  document.getElementById("finalScore").textContent =
+    score + " / " + questions.length;
+
+  let message = "";
+
+  if(score === 5){
+
+    message = "🏆 ممتاز جدًا! مستواك رائع.";
+
+  }else if(score >= 3){
+
+    message = "👏 جيد جدًا! استمري في التعلم.";
+
+  }else{
+
+    message = "💪 لا تقلقي! راجعي الدروس وحاولي مرة أخرى.";
+
+  }
+
+  document.getElementById("level").textContent =
+    message;
+
+}
+
+
+showHome();
+
+</script>
+
+</body>
+</html>
